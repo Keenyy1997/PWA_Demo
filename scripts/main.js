@@ -22,13 +22,13 @@ if( 'serviceWorker' in navigator)
 
 if( window.Notification && Notification.permission !== 'denied' )
 {
-	if(Notification.permission !== 'granted')
-	{
+	// if(Notification.permission !== 'granted')
+	// {
 		Notification.requestPermission(status => 
 		{
 			console.log(status)
 		})
-	}
+	// }
 }
 
 const NotificationTest = () =>
