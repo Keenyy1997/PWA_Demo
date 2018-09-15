@@ -7,12 +7,16 @@ if( 'serviceWorker' in navigator)
 		navigator.serviceWorker.register('./scripts/sw.js')
 			.then( registration =>
 			{
-				console.log("ServiceWorker Registrado! <3")
+				console.log("Service Worker Installing")
 			})
 			.catch( error =>
 			{
 				console.log(error)
 			})
+
+		navigator.serviceWorker.ready.then(function(registration) {
+           console.log('Service Worker Ready');
+        })
 	})
 }
 
@@ -22,17 +26,12 @@ if( window.Notification && Notification.permission !== 'denied' )
 	{
 		Notification.requestPermission(status => 
 		{
-			alert("Notifications:", status)
+			console.log(status)
 		})
 	}
 }
 
-const NotificationTest = ()=>
+const NotificationTest = () =>
 {
-	alert("Hello?")
-	let n = new Notification("Sample Notification Title!",
-	{
-		body:"Sample Body Content!",
-		icon:"./img/favicon-96x96.png"
-	})
+	new Notification("Hi!")
 }
