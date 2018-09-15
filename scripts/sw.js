@@ -16,7 +16,7 @@ self.addEventListener('install', function(event) {
   event.waitUntil(
     caches.open(cache_name)
     .then(function(cache) {
-      return cache.addAll(cached_urls);
+      return cache.addAll(urlsCache);
     })
   );
 });
@@ -48,7 +48,7 @@ self.addEventListener('fetch', function(event) {
           if (response.status === 404) {
             // return caches.match('fourohfour.html');
           }
-          return caches.open(cached_urls).then(function(cache) {
+          return caches.open(urlsCache).then(function(cache) {
            cache.put(event.request.url, response.clone());
             return response;
           });
