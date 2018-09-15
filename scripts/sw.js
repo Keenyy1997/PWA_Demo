@@ -5,9 +5,8 @@ self.addEventListener('install', e => {
   e.waitUntil(
     caches.open(cacheName).then(cache => {
       return cache.addAll([
-	"./",
-	"../",
-	"../?utm=homescreen",
+	// "./",
+	// "../",
 	"../index.html?utm=homescreen",
 	"../styles/main.css",
 	"../scripts/main.js",
