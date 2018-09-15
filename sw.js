@@ -5,16 +5,18 @@ self.addEventListener('install', e => {
   e.waitUntil(
     caches.open(cacheName).then(cache => {
       return cache.addAll([
-	// "./",
-	// "../",
-	"../index.html?utm=homescreen",
-	"../styles/main.css",
-	"../scripts/main.js",
-	"../scripts/promises.js",
-	"../scripts/sw.js",
-	"../favicon.ico",
-	"https://use.fontawesome.com/releases/v5.3.1/css/all.css"
-])
+                	// "./",
+                	// "../",
+                  "manifest.json",
+                	"index.html?utm=homescreen",
+                  "index.html",
+                	"styles/main.css",
+                	"main.js",
+                	"promises.js",
+                	"sw.js",
+                	"favicon.ico",
+                	// "https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+                ])
           .then(() => self.skipWaiting());
     })
   );
@@ -34,7 +36,9 @@ self.addEventListener('fetch', event => {
     caches.open(cacheName)
       .then(cache => cache.match(event.request, {ignoreSearch: true}))
       .then(response => {
-      return response || fetch(event.request);
+        if(response)
+          return response
+
     })
   );
 });
