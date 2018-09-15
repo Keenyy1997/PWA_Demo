@@ -7,12 +7,12 @@ self.addEventListener('install', e => {
       return cache.addAll([
 	// "./",
 	// "../",
-	"/index.html?utm=homescreen",
-	"/styles/main.css",
-	"/scripts/main.js",
-	"/scripts/promises.js",
-	"/scripts/sw.js",
-	"/favicon.ico",
+	"/PWA_Demo/index.html?utm=homescreen",
+	"/PWA_Demo/styles/main.css",
+	"/PWA_Demo/scripts/main.js",
+	"/PWA_Demo/scripts/promises.js",
+	"/PWA_Demo/scripts/sw.js",
+	"/PWA_Demo/favicon.ico",
 	"https://use.fontawesome.com/releases/v5.3.1/css/all.css"
 ])
           .then(() => self.skipWaiting());
