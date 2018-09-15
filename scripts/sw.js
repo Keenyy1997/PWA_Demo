@@ -21,10 +21,15 @@ self.addEventListener('install', e => {
 });
 
 self.addEventListener('activate', event => {
+
+	console.log("Activate")
   event.waitUntil(self.clients.claim());
 });
 
 self.addEventListener('fetch', event => {
+
+	console.log("fetch")
+
   event.respondWith(
     caches.open(cacheName)
       .then(cache => cache.match(event.request, {ignoreSearch: true}))
