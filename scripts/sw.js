@@ -1,5 +1,10 @@
-// const CACHE_NAME = "cache_PWADEMO"
-const urlsCache = [
+const version = "0.1";
+const cacheName = `pwa-${version}`;
+self.addEventListener('install', e => {
+  const timeStamp = Date.now();
+  e.waitUntil(
+    caches.open(cacheName).then(cache => {
+      return cache.addAll([
 	"./",
 	"../",
 	"../?utm=homescreen",
@@ -10,16 +15,7 @@ const urlsCache = [
 	"../scripts/sw.js",
 	"../favicon.ico",
 	"https://use.fontawesome.com/releases/v5.3.1/css/all.css"
-]
-
-
-const version = "0.1";
-const cacheName = `pwa-${version}`;
-self.addEventListener('install', e => {
-  const timeStamp = Date.now();
-  e.waitUntil(
-    caches.open(cacheName).then(cache => {
-      return cache.addAll(urlsCache)
+])
           .then(() => self.skipWaiting());
     })
   );
