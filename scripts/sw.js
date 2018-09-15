@@ -1,4 +1,5 @@
-const CACHE_NAME ="cache_PWADEMO", urlsCache = [
+const CACHE_NAME = "cache_PWADEMO"
+const urlsCache = [
 	"./",
 	"../",
 	"../?utm=homescreen",
@@ -11,72 +12,50 @@ const CACHE_NAME ="cache_PWADEMO", urlsCache = [
 	"https://use.fontawesome.com/releases/v5.3.1/css/all.css"
 ]
 
-self.addEventListener("install", e =>{
-	console.log("SW Installing...")
+self.addEventListener('install', function(event) {
+  event.waitUntil(
+    caches.open(cache_name)
+    .then(function(cache) {
+      return cache.addAll(cached_urls);
+    })
+  );
+});
 
-	e.waitUntil(
-		caches.open(CACHE_NAME)
-			.then(cache =>
-			{
-				console.log('Archivos en cache')
-				return cache.addAll(urlsCache)
-			})
-	)
-})
-self.addEventListener("activate",e =>{
-	console.log("SW Activado")
+self.addEventListener('activate', function(event) {
+  event.waitUntil(
+    caches.keys().then(function(cacheNames) {
+      return Promise.all(
+        cacheNames.map(function(cacheName) {
+          if (cacheName.startsWith('pages-cache-') && staticCacheName !== cacheName) {
+            return caches.delete(cacheName);
+          }
+        })
+      );
+    })
+  );
+});
 
-	self.clients.claim()
-	const cacheList = [CACHE_NAME]
-
-	e.waitUntil(
-		caches.keys()
-			.then(cachesNames => {
-				return Promise.all(
-					cachesNames.map(cacheName => {
-						if( cacheList.indexOf(cacheName) === -1) {
-							return caches.delete(cacheName)
-						}
-					})
-				)
-			})
-			.then(()=>
-			{
-				console.log("Cache Updated Successfully!")
-				return self.clients.claim()
-			})
-	)
-
-})
-
-self.addEventListener("fetch",e =>{
-	console.log("SW Recuperando")
-
-	e.respondWith(
-		caches.match(e.request)
-			.then(res => 
-			{
-				if( res ){
-					return res
-				}
-
-				return fetch( e.request )
-					.then(res => 
-					{
-						let resToCache = res.clone()
-
-						caches.open(cacheName)
-							.then(cache => 
-							{
-								cache.put(request, resToCache)
-									.catch(err => 
-										console.log(`${request.url}:${err.message}`))
-							})
-						return res
-					}).catch(e => {
-						console.log(e)
-					})
-			})
-	)
-
-})
+self.addEventListener('fetch', function(event) {
+    console.log('Fetch event for ', event.request.url);
+    event.respondWith(
+      caches.match(event.request).then(function(response) {
+        if (response) {
+          console.log('Found ', event.request.url, ' in cache');
+          return response;
+        }
+        console.log('Network request for ', event.request.url);
+        return fetch(event.request).then(function(response) {
+          if (response.status === 404) {
+            // return caches.match('fourohfour.html');
+          }
+          return caches.open(cached_urls).then(function(cache) {
+           cache.put(event.request.url, response.clone());
+            return response;
+          });
+        });
+      }).catch(function(error) {
+        console.log('Error, ', error);
+        // return caches.match('offline.html');
+      })
+    );
+  });
