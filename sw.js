@@ -11,13 +11,13 @@ const PRECACHE_URLS = [
       "scripts/aos.js",
       "scripts/materialize.min.js",
       "img/logo_dulink2.png",
+      "img/code_background-min.jpg",
       // "manifest.json",
       // "styles/main.css",
       // "promises.js",
       // "sw.js",
       // "favicon.ico",
       // "img/logo_dulink.png",
-      // "img/code_background-min.jpg.png",
       // "styles/fontawesome.css"
     ]
 
