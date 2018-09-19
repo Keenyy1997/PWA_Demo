@@ -5,7 +5,7 @@ const RUNTIME = "runtime";
 const PRECACHE_URLS = [
       "manifest.json",
       "index.html",
-      "./PWA_Demo/",
+      // "./PWA_Demo/",
       "styles/main.css",
       "styles/aos.css",
       "styles/materialize.min.css",
