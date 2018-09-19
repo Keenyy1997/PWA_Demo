@@ -5,20 +5,19 @@ const RUNTIME = "runtime";
 const PRECACHE_URLS = [
       "manifest.json",
       "index.html",
-      // "./PWA_Demo/",
       "styles/main.css",
-      "styles/aos.css",
-      "styles/materialize.min.css",
+      // "styles/aos.css",
+      // "styles/materialize.min.css",
       "main.js",
-      "promises.js",
-      "sw.js",
-      "scripts/aos.js",
-      "scripts/materialize.min.js",
+      // "promises.js",
+      // "sw.js",
+      // "scripts/aos.js",
+      // "scripts/materialize.min.js",
       "favicon.ico",
-      "img/logo_dulink.png",
-      "img/logo_dulink2.png",
-      "img/code_background-min.jpg.png",
-      "styles/fontawesome.css"
+      // "img/logo_dulink.png",
+      // "img/logo_dulink2.png",
+      // "img/code_background-min.jpg.png",
+      // "styles/fontawesome.css"
     ]
 
 // The install handler takes care of precaching the resources we always need.
