@@ -40,20 +40,197 @@
 	<meta name="msapplication-TileImage" content="img/android-icon-192x192.png">
 	
 	<!-- ICONS CDN -->
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
+	<link rel="stylesheet" href="styles/fontawesome.css">
+
+	<!-- TRANSITIONS LIBRARY -->
+	<link rel="stylesheet" href="styles/aos.css">
+	<script src="scripts/aos.js"></script>
+
+	<!-- MATERIALIZE -->
+	<link rel="stylesheet" href="styles/materialize.min.css">
+	<script src="scripts/materialize.min.js"></script>
 
 	<!-- Main Stylesheet -->
 	<link rel="stylesheet" href="styles/main.css"> 
 </head>
 <body>
 	<header>
-		<h1>PWA Demo</h1>
+		<center>
+			<img 
+				data-aos="fade-up"
+				data-aos-duration="2000"
+				data-aos-anchor-placement="top-center"
+				src="img/logo_dulink2.png"
+			/>
+		</center>
 	</header>
 	<section>
-		<button class="button Medium" onclick="NotificationTest()">
-			<i class="fa fa-bell" style='width:30px;'></i> Press me to test a push notification</button>
+		<div 
+			class="card-panel"
+			data-aos="fade-up"
+			data-aos-duration="1500"
+			data-aos-easing="ease-in-sine"
+				>	
+			<form class="container" onsubmit="event.preventDefault();Estimation();">
+					<div class="row">	
+						<div class="input-field col s12">
+							<select id='form_business'>
+								<option value="" disabled selected>Choose your option</option>
+								<option value="1">Small (30$/hr)</option>
+								<option value="2">Medium (50$/hr)</option>
+								<option value="3">Enterprise (80$/hr)</option>
+							</select>
+							<label>Business Size</label>
+						</div>
+						<div class="input-field col s12" style="text-align:center;">
+							<input type='number' id="form_hours" value=40/>
+							<label for="form_hours">Project Hours</label>	
+						</div>
+
+						<div class="col s12" style="text-align:center;">
+							<button class="btn waves-effect" type='submit' style="width:100%;">
+								Submit
+							</button>	
+						</div>
+
+						<cite class="col s12" style='color:#999;font-size:.8em;'>
+							*Every 160hrs a 5% of discount is added (max 25%)
+						</cite>
+					</div>
+					<div class="row">	
+						<table class="highlight centered responsive-table" style="margin:auto;">
+							<thead>
+								<tr>
+									<th>Bussiness</th>
+									<th>$/hr</th>
+									<th>Hours</th>
+									<th>Discount</th>
+									<th>SubTotal</th>
+									<th>Saving</th>
+									<th>Total</th>
+								</tr>
+							</thead>
+							<tbody id='table_content'>
+								<!-- <tr>
+									<td>Small</td>
+									<td>30$</td>
+									<td>0</td>
+									<td>0%</td>
+									<td>0$</td>
+									<th>0$</th>
+									<th>0$</th>
+								</tr> -->
+							</tbody>
+						</table>
+					</div>	
+			</form>
+		</div>		
 	</section>
 	<!-- Main Script -->
 	<script src="main.js"></script>
+	<script>
+		AOS.init()		
+		// INIT TRANSITIONS
+
+		const BusinessSource = [
+			{ "ID":1,"Business":"Small","Rate":30},
+			{ "ID":2,"Business":"Medium","Rate":50},
+			{ "ID":3,"Business":"Enterprise","Rate":80},
+		]
+
+		const Estimation = ()=>
+		{
+			let Bussiness = document.querySelector("#form_business")
+			let BusinessValue = Bussiness.value || "";
+
+			if(BusinessValue == "")
+			{
+				alert("Debes de seleccionar una Empresa valida")
+				return
+			}
+
+			let Hours = document.querySelector("#form_hours")
+			let HoursValue = Hours.value || 0
+
+			let Rate = 0;
+
+			let BusinessSize = ""
+
+			BusinessSource.map(Item=>
+			{
+				if(Item.ID == parseInt(BusinessValue))
+				{
+					Rate = Item.Rate
+					BusinessSize = Item.Business
+				}
+			})
+
+			let SubTotal = Rate * HoursValue
+
+			let Discount = parseInt(HoursValue / 160)
+
+			if(Discount > 5)
+				Discount = 5
+
+			let DiscountValue = (SubTotal * (5 * Discount)) / 100
+			let TotalValue = SubTotal - DiscountValue
+
+			let TR = document.createElement("tr")
+
+			let TD = document.createElement("td")
+				TD.textContent = BusinessSize
+				TR.appendChild(TD)
+				//Business
+				TD = document.createElement("td")
+				TD.textContent = Rate+"$"
+				TR.appendChild(TD)
+				//Rate
+				TD = document.createElement("td")
+				TD.textContent = HoursValue
+				TR.appendChild(TD)
+				//Hours
+				TD = document.createElement("td")
+				TD.textContent = (Discount * 5) + "%"
+				TR.appendChild(TD)
+				//Discount
+				TD = document.createElement("td")
+				TD.textContent = formatMoney(SubTotal)
+				TR.appendChild(TD)
+				//Subtotal
+
+				TD = document.createElement("td")
+				TD.textContent = formatMoney(DiscountValue)
+				TR.appendChild(TD)
+				//Saving
+				TD = document.createElement("td")
+				TD.textContent = formatMoney(TotalValue)
+				TR.appendChild(TD)
+				//Total
+			let TableContent = document.querySelector("#table_content")
+
+			if(TableContent)
+			{
+				TableContent.innerHTML = ""
+				TableContent.append(TR)
+			}
+		}
+
+		// INIT SELECT COMPONENT
+		document.addEventListener('DOMContentLoaded', ()=>
+		{
+			let Elems = document.querySelectorAll('select')
+			let Instance = M.FormSelect.init(Elems)
+
+			document.querySelector("#form_business").addEventListener('change',(event)=>
+			{
+				console.log(event)
+
+				let BusinessValue = event.target.value || ""
+
+				if(BusinessValue != "")
+					Estimation()
+			})
+		})
+	</script>
 </body>
 </html>

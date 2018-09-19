@@ -1,13 +1,13 @@
 {
- "name": "Progressive",
- "short_name":"PWA",
+ "name": "Dulink Estimation",
+ "short_name":"D. Estimation",
  "description":"Aplicacion Demo Progressive Web App",
- "background_color":"#999999",
- "theme_color"  :"#000",
+ "background_color":"#000000",
+ "theme_color"  :"#fff",
  "orientation"  :"portrait",
  "display"      :"standalone",
  "start_url"    :"index.html",
- "scope"        :"",
+ "scope"        :"index.html",
  "lang"         :"es-ES",
  "icons": [
   {

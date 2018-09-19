@@ -10,12 +10,19 @@ self.addEventListener('install', e => {
                   "manifest.json",
                 	"index.html?utm=homescreen",
                   "index.html",
-                	"styles/main.css",
+                  "styles/main.css",
+                  "styles/aos.css",
+                	"styles/materialize.min.css",
                 	"main.js",
                 	"promises.js",
-                	"sw.js",
-                	"favicon.ico",
-                	// "https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+                  "sw.js",
+                  "scripts/aos.js",
+                	"scripts/materialize.min.js",
+                  "favicon.ico",
+                  "img/logo_dulink.png",
+                  "img/logo_dulink2.png",
+                	"img/code_background-min.jpg.png",
+                	"styles/fontawesome.css"
                 ])
           .then(() => self.skipWaiting());
     })
