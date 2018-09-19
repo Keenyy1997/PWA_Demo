@@ -3,8 +3,9 @@ const PRECACHE = `pwa-${version}`;
 const RUNTIME = "runtime";
 
 const PRECACHE_URLS = [
-      // "manifest.json",
       "index.html",
+      "styles/main.css",
+      // "manifest.json",
       // "styles/main.css",
       // "styles/aos.css",
       // "styles/materialize.min.css",
