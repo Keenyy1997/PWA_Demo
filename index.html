@@ -140,7 +140,7 @@
 
 		const Estimation = ()=>
 		{
-			let Bussiness = document.querySelector("#form_business")
+			let Bussiness = document.getElementById("form_business")
 			let BusinessValue = Bussiness.value || "";
 
 			if(BusinessValue == "")
@@ -149,7 +149,7 @@
 				return
 			}
 
-			let Hours = document.querySelector("#form_hours")
+			let Hours = document.getElementById("form_hours")
 			let HoursValue = Hours.value || 0
 
 			let Rate = 0;
@@ -206,7 +206,7 @@
 				TD.textContent = formatMoney(TotalValue)
 				TR.appendChild(TD)
 				//Total
-			let TableContent = document.querySelector("#table_content")
+			let TableContent = document.getElementById("table_content")
 
 			if(TableContent)
 			{
@@ -218,10 +218,10 @@
 		// INIT SELECT COMPONENT
 		document.addEventListener('DOMContentLoaded', ()=>
 		{
-			let Elems = document.querySelectorAll('select')
+			let Elems = document.getElementsByTagName('select')
 			let Instance = M.FormSelect.init(Elems)
 
-			document.querySelector("#form_business").addEventListener('change',(event)=>
+			document.getElementById("form_business").addEventListener('change',(event)=>
 			{
 				console.log(event)
 
