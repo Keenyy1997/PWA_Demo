@@ -9,7 +9,7 @@ self.addEventListener('install', e => {
                   "manifest.json",
                 	"index.html?utm=homescreen",
                   "index.html",
-                  "./",
+                  "",
                   "styles/main.css",
                   "styles/aos.css",
                 	"styles/materialize.min.css",
@@ -28,25 +28,36 @@ self.addEventListener('install', e => {
           .catch(err=> console.log(err))
     })
   );
+
+  console.log(Install, e)
 });
 
 self.addEventListener('activate', event => {
 
-	console.log("Activate")
+	console.log("Activate",event)
   event.waitUntil(self.clients.claim());
 });
 
 self.addEventListener('fetch', event => {
 
-	console.log("fetch")
+	console.log("fetch",event)
 
-  event.respondWith(
-    caches.open(cacheName)
-      .then(cache => cache.match(event.request, {ignoreSearch: true}))
-      .then(response => {
-        if(response)
-          return response
+  if (event.request.url.startsWith(self.location.origin)) {
+    event.respondWith(
+      caches.match(event.request).then(cachedResponse => {
+        if (cachedResponse) {
+          return cachedResponse;
+        }
 
-    })
-  );
+        return caches.open(RUNTIME).then(cache => {
+          return fetch(event.request).then(response => {
+            // Put a copy of the response in the runtime cache.
+            return cache.put(event.request, response.clone()).then(() => {
+              return response;
+            });
+          });
+        });
+      })
+    );
+  }
 });
