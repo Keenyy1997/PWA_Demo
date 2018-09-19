@@ -1,19 +1,19 @@
-const version = "0.1";
+const version = "0.3";
 const PRECACHE = `pwa-${version}`;
 const RUNTIME = "runtime";
 
 const PRECACHE_URLS = [
-      "manifest.json",
+      // "manifest.json",
       "index.html",
-      "styles/main.css",
+      // "styles/main.css",
       // "styles/aos.css",
       // "styles/materialize.min.css",
-      "main.js",
+      // "main.js",
       // "promises.js",
       // "sw.js",
       // "scripts/aos.js",
       // "scripts/materialize.min.js",
-      "favicon.ico",
+      // "favicon.ico",
       // "img/logo_dulink.png",
       // "img/logo_dulink2.png",
       // "img/code_background-min.jpg.png",
