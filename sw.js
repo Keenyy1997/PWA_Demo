@@ -7,22 +7,22 @@ self.addEventListener('install', e => {
       return cache.addAll([
                 	// "./",
                 	// "../",
-                  "manifest.json",
-                	"index.html?utm=homescreen",
-                  "index.html",
-                  "styles/main.css",
-                  "styles/aos.css",
-                	"styles/materialize.min.css",
-                	"main.js",
-                	"promises.js",
-                  "sw.js",
-                  "scripts/aos.js",
-                	"scripts/materialize.min.js",
-                  "favicon.ico",
-                  "img/logo_dulink.png",
-                  "img/logo_dulink2.png",
-                	"img/code_background-min.jpg.png",
-                	"styles/fontawesome.css"
+                  "/PWA_DEMO/manifest.json",
+                	"/PWA_DEMO/index.html?utm=homescreen",
+                  "/PWA_DEMO/index.html",
+                  "/PWA_DEMO/styles/main.css",
+                  "/PWA_DEMO/styles/aos.css",
+                	"/PWA_DEMO/styles/materialize.min.css",
+                	"/PWA_DEMO/main.js",
+                	"/PWA_DEMO/promises.js",
+                  "/PWA_DEMO/sw.js",
+                  "/PWA_DEMO/scripts/aos.js",
+                	"/PWA_DEMO/scripts/materialize.min.js",
+                  "/PWA_DEMO/favicon.ico",
+                  "/PWA_DEMO/img/logo_dulink.png",
+                  "/PWA_DEMO/img/logo_dulink2.png",
+                	"/PWA_DEMO/img/code_background-min.jpg.png",
+                	"/PWA_DEMO/styles/fontawesome.css"
                 ])
           .then(() => self.skipWaiting());
     })
