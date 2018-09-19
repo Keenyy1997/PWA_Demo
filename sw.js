@@ -1,5 +1,7 @@
 const version = "0.1";
 const cacheName = `pwa-${version}`;
+
+console.log(fetch("./index.html"))
 self.addEventListener('install', e => {
   const timeStamp = Date.now();
   e.waitUntil(
