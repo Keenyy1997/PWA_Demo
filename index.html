@@ -71,7 +71,7 @@
 			data-aos-duration="1500"
 			data-aos-easing="ease-in-sine"
 				>	
-			<form class="container" id='form_Estimation'>
+			<form class="container" id='form_Estimation' onsubmit="event.preventDefault();Estimation();">
 					<div class="row">	
 						<div class="input-field col s12">
 							<select id='form_business'>
@@ -229,13 +229,6 @@
 
 				if(BusinessValue != "")
 					Estimation()
-			})
-
-			document.querySelector("#form_Estimation").addEventListener('submit',(event)=>
-			{
-				event.preventDefault()
-
-				Estimation()
 			})
 		})
 	</script>

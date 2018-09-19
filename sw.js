@@ -16,8 +16,8 @@ const PRECACHE_URLS = [
       "scripts/materialize.min.js",
       "favicon.ico",
       // "img/logo_dulink.png",
-      // "img/logo_dulink2.png",
-      // "img/code_background-min.jpg.png",
+      "img/logo_dulink2.png",
+      "img/code_background-min.jpg.png",
       "styles/fontawesome.css"
     ]
 
