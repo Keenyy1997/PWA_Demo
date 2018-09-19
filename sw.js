@@ -12,13 +12,13 @@ const PRECACHE_URLS = [
       // "styles/main.css",
       // "promises.js",
       // "sw.js",
-      // "scripts/aos.js",
-      // "scripts/materialize.min.js",
-      // "favicon.ico",
+      "scripts/aos.js",
+      "scripts/materialize.min.js",
+      "favicon.ico",
       // "img/logo_dulink.png",
       // "img/logo_dulink2.png",
       // "img/code_background-min.jpg.png",
-      // "styles/fontawesome.css"
+      "styles/fontawesome.css"
     ]
 
 // The install handler takes care of precaching the resources we always need.
